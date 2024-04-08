@@ -1,3 +1,26 @@
-1.Task1
+1.Hang's benchmark dataset:
+	a. benchmark dataset adapter. - handover to Yasen
+		- investigate and reproduce model test from specific dataset:
+			Code
+				CRUXEval:		reproduced
+				HumanEvalPack: 	ongoing				
+				SWE-bench: 		ongoing						
+			Math / Reasoning
+				MATH:			ongoing
+				BBH:			ongoing
+			General Capabilities
+				MMLU:			ongoing
+				AGIEVAL:		ongoing
+	b. build adapter to run the model above with specific dataset: todo
 
-2.Task2
+2.Model trace log refine. 
+	a. filter all Q&A pairs from logs. - done
+		- filter out all conversation from logs by timeline. - done
+	b. remove duplicate and keep the last conversation:
+		- deduplication algorithm: - done
+			sentence distance(difflib/SequenceMatcher): after test it is not safe for complex sentence.
+			semantic model(sentence-transformers/all-roberta-large-v1): after test it is more safe and selected.
+		- optimize, It takes too long time and need do some optimize:
+			filter out a batch of completely equal sentence - done			
+			using algorithms to only run lengths within 1000 for the first round - ongoing
+			splitting data into multiple multi-threaded runs - todo
